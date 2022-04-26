@@ -6,6 +6,10 @@ module.exports=(err,req,res,next)=>{
         msg=err.keyValue.email+' already taken!'
         statusCode=400
     }
+    if(err.name=='JsonWebTokenError'){
+        msg='No Auth!'
+        statusCode=400
+    }
     if(err.name=='ValidationError'){
         msg=Object.values(err.errors).map(e=>e.message).join(' , ')
     }
